@@ -1,0 +1,54 @@
+<div class="row">
+  <nav class="navbar navbar-expand-lg navbar-dark  mat-elevation-z8"> <!--bg-primary-->
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/movimientos']" routerLinkActive="router-link-active" >Movimientos</a>
+          </li>
+          <!--
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/marcas']" routerLinkActive="router-link-active" >Marcas</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/tipos-producto']" routerLinkActive="router-link-active" >Tipos de Producto</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/unidades']" routerLinkActive="router-link-active" >Unidades</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/productos']" routerLinkActive="router-link-active" >Productos</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/movimientos']" routerLinkActive="router-link-active" >Movimientos</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/analisis']" routerLinkActive="router-link-active" >Análisis</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link"  routerLinkActive="router-link-active" >Login</a>
+          </li>
+          -->
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
+<div class="row">
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</div>  

@@ -1,0 +1,24 @@
+<div>
+  <h1 mat-dialog-title>Historial de Precios de {{data.nombre}}</h1>
+  <div mat-dialog-content>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Fecha</th>
+          <th scope="col">Valor</th>
+          <th scope="col">%</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let precio of precios">
+          <td>{{precio.fecha}}</td>
+          <td>$ {{precio.valor}}</td>
+          <td>{{precio.variabilidad}} %</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">Cancelar</button>
+  </div>
+</div>

@@ -1,0 +1,149 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.example-container {
+    width: 100%;
+    height: 100%;
+}
+
+.mat-drawer{
+    width: 150px;
+}
+
+.mat-drawer-content{
+    height: 800px;
+}
+  
+table {
+  width: 100%;
+}
+
+td .icon-modify, mat-table .icon-modify{
+  font-size: 28px;
+  cursor: pointer;
+  margin-right: 5px;
+  color: steelblue;
+}
+
+td .icon-delete, mat-table .icon-delete{
+  font-size: 28px;
+  cursor: pointer;
+  margin-right: 5px;
+  color: red;
+}
+
+mat-table .icon-modify-price{
+  font-size: 28px;
+  cursor: pointer;
+  margin-right: 5px;
+  color: green;
+}
+
+mat-table .icon-historial{
+  font-size: 28px;
+  cursor: pointer;
+  margin-right: 5px;
+  color: #FF0083;
+}
+
+mat-table .icon-price{
+  font-size: 28px;
+  cursor: pointer;
+  margin-right: 5px;
+  color: #025F46;
+}
+
+.icon-modify-price{
+  font-size: 28px;
+  cursor: pointer;
+  margin-right: 5px;
+  color: green;
+}
+
+.spinner{
+  display: flex;  
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+  
+.mat-column-id {
+  Word-wrap: break-Word;
+  white-space: unset;
+  flex: 0 0 5%;
+  width: 5%;
+}
+  
+.mat-column-description {
+  Word-wrap: break-Word;
+  white-space: unset;
+  flex: 0 0 85%;
+  width: 85%;
+}
+  
+.mat-column-button {
+  Word-wrap: break-Word;
+  white-space: unset;
+  flex: 0 0 10%;
+  width: 10%;
+}
+
+.model-form{
+  display: flex;
+  flex-direction: column; 
+  margin:1rem auto; 
+  width: 400px;
+  min-height: 200px; 
+  max-height: 600px;
+  padding: 1rem;
+}
+
+.model-form-product{
+  display: flex;
+  flex-direction: column; 
+  margin:1rem auto; 
+  width: 400px;
+  height: 400px;
+  /*min-height: 600px; */
+  /*max-height: 400px;*/
+  padding: 1rem;
+}
+
+.input-id{
+  width: 100px;
+}
+
+.input-string{
+  width: 250px;
+}
+
+.model-form .input-id{
+    width: 100px;
+}
+
+.model-form .input-string{
+    width: 250px;
+}
+
+.model-form .input-precio{
+  width: 75px;
+}
+
+.btn-modify{
+  width: 200px;
+  text-align: left;
+}
+
+.text-header{
+  font-size: 30px;
+}
+
+.text-table{
+font-size: 20px;
+}
+
+nav{
+  background-color: #FF0083;
+}

@@ -1,0 +1,118 @@
+<div style="margin-left: 10px;">
+  <div style="margin-top: 10px;">
+    <h1 *ngIf="movimiento && !movimiento.id">Nuevo Tipo de Producto</h1>
+    <h1 *ngIf="movimiento && movimiento.id">Editar Tipo de Producto</h1>
+  </div>
+
+  <div class="row">
+    
+    <button mat-raised-button class="mt-3 btn btn-primary" style="width: 180px; margin-bottom: 20px; margin-left: 10px; align-items: center;" (click)="save()"> 
+      <i class="fa fa-floppy-o" aria-hidden="true"></i>
+        Guardar
+    </button>
+
+    <button mat-raised-button class="mt-3 btn btn-success" style="width: 180px; margin-bottom: 20px; margin-left: 10px;" (click)="addProducto()"> 
+      <i class="fa fa-plus-circle" aria-hidden="true"></i>
+      Agregar Producto
+    </button>
+
+    <a mat-raised-button class="mt-3 btn btn-secondary" style="width: 180px; margin-bottom: 20px; margin-left: 10px;"><!-- [routerLink]="['/movimientos']">--> 
+      <i class="fa fa-times" style="vertical-align: center; " aria-hidden="true"></i>
+      Cancelar      
+    </a>
+  </div>
+
+  <form [formGroup]="register">
+    <div class="row"  *ngIf="movimiento.id">
+      <mat-form-field style="width: 100px;">
+        <mat-label>Id</mat-label>
+        <input matInput formControlName="id" [(ngModel)]="movimiento.id" type="number" readonly>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field style="width: 250px;">
+        <mat-label>Comentario</mat-label>
+        <input matInput formControlName="comentario" [(ngModel)]="movimiento.comentario" type="text" placeholder="Ingrese comentario" >
+        <mat-error *ngIf="checkError('comentario', 'required')">Comentario is required</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field style="width: 250px;">
+        <mat-label>Tipo de Movimiento</mat-label>
+        <mat-select formControlName="tipoMovimiento" disableRipple [(ngModel)]="tipoMovimientoSelect" > 
+          <mat-option>Seleccionar Tipo de Movimiento</mat-option>
+          <mat-option [value]="1" >Ingreso</mat-option>
+          <mat-option [value]="2" >Salida</mat-option>
+        </mat-select>
+        <mat-error *ngIf="checkError('tipoMovimiento', 'required')">Tipo de producto is required</mat-error>
+      </mat-form-field>
+    </div>
+  
+    <div class="row">
+      <mat-form-field style="width: 250px;">
+        <mat-label>Fecha:</mat-label>
+        <input matInput formControlName="fecha" type="date" [(ngModel)]="movimiento.fechaString">
+        <mat-error *ngIf="checkError('fecha', 'required')">Fecha is required</mat-error>
+      </mat-form-field>
+    </div>
+    
+    <div class="row">
+      <mat-form-field style="width: 250px;">
+      <mat-label>Local</mat-label>
+      <mat-select formControlName="idLocal" disableRipple [(ngModel)]="idLocalSelect" > 
+        <mat-option>Seleccionar Local</mat-option>
+        <mat-option  *ngFor="let item of locales" [value]="item.idLocal" >{{item.nombre}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="checkError('idLocal', 'required')">Local is required</mat-error>
+      </mat-form-field>
+    </div>
+  
+  </form>
+
+  <div class="row">
+    <mat-form-field style="width: 250px;">
+      <mat-label>Total</mat-label>
+      <span matPrefix>$ &nbsp;</span>
+      <input matInput [(ngModel)]="total" type="number" readonly >
+    </mat-form-field>
+  </div>
+  
+  <div class="row" *ngIf="movimiento.movimientoProducto.length > 0" style="margin-right: 200px;">
+    <mat-table [dataSource]="dataSource" matSort >
+
+      <ng-container matColumnDef="nombre">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+        <mat-cell  *matCellDef="let item"> {{ item.producto.nombre }} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="marca">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Marca </mat-header-cell>
+        <mat-cell  *matCellDef="let item"> {{ item.producto.marca.nombre }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="tipoProducto">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Tipo producto </mat-header-cell>
+        <mat-cell  *matCellDef="let item"> {{ item.producto.tipoProducto.nombre }} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="precio">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Precio </mat-header-cell>
+        <mat-cell  *matCellDef="let item"> $ {{ item.valor}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="buttons">
+        <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
+        <mat-cell *matCellDef="let item" >
+          <a type="button" (click)="editProduct(item)" > <i class="icon-modify fa fa-edit"></i> </a>
+          <a type="button" (click)="deleteProduct(item)" > <i class="icon-delete fa fa-minus-circle"></i></a>
+        </mat-cell>
+      </ng-container>      
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let item; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<h1 mat-dialog-title>Agregar Producto</h1>
+<div *ngIf="productos?.length>0 && productosCargados">  
+  <div class="model-form-product">
+    <form [formGroup]="register">
+        
+      <div class="row" *ngIf="productos && productos.length > 0">
+        <mat-form-field class="input-string">
+          <input #productoInput (keyup)="0" matInput placeholder="Producto" [matAutocomplete]="auto" formControlName="producto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option (onSelectionChange)="productoInput.value !=undefined && onEnter(producto)" *ngFor="let producto of filteredProductos | async" [value]="producto.nombre">
+             {{ producto.nombreLargo }}
+            </mat-option>
+          </mat-autocomplete>
+          <mat-error *ngIf="checkError('producto', 'required')">Peso is required</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="row" >
+        <mat-form-field class="input-string">
+          <mat-label>Peso</mat-label>
+          <input matInput formControlName="peso" min="0" type="number"  >
+          <mat-error *ngIf="checkError('peso', 'required')">Peso is required</mat-error>
+        </mat-form-field>
+      </div>
+
+    </form>
+
+    <div class="row">
+      <mat-form-field class="input-string">
+        <mat-label>Marca</mat-label>
+          <input matInput type="text" [value]="productoSelect?.marca?.nombre" readonly >
+        </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field class="input-string">
+        <mat-label>Unidad</mat-label>
+        <input matInput type="text" [value]="productoSelect?.unidad?.nombre" readonly >
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <table style="margin-left: 10px;">
+        <td style="padding-right: 8px;">
+          <mat-form-field class="input-precio ">
+            <mat-label>Valor</mat-label>
+            <span matPrefix>$ &nbsp;</span>
+            <input matInput type="text" [value]="productoSelect?.precio?.valor" readonly >
+          </mat-form-field>  
+        </td>
+        <td style="padding-right: 8px">
+          <button mat-raised-button style="margin-left: 10px;"  class=" btn-success mt-3" (click)="modifyPriceDialog(productoSelect)"> 
+            <i class=" fa fa-plus-circle"></i>
+            Editar Precio
+          </button>  
+        </td>
+      </table>
+    </div>
+    
+  </div>
+  
+  <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">Cancelar</button>
+      <button mat-button [mat-dialog-close]="data" (click)="save()" cdkFocusInitial>Confirmar</button>
+  </div>
+</div>
+<div class="row spinner" *ngIf="!productosCargados">
+  <mat-spinner ></mat-spinner>
+</div>

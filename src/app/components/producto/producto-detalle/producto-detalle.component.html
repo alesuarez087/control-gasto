@@ -1,0 +1,72 @@
+<div>
+  <h1 mat-dialog-title *ngIf="!data.id">Nuevo Producto</h1>
+  <h1 mat-dialog-title *ngIf="data.id">Editar Producto</h1>
+  <div mat-dialog-content>
+    <div class="model-form">
+      <form [formGroup]="register">
+        <div style="border-color: blue;" class="rounded">
+          
+          <div class="row"  *ngIf="data.id">
+            <mat-form-field class="input-id">
+              <mat-label>Id</mat-label>
+              <input matInput formControlName="id" type="number" readonly>
+            </mat-form-field>
+          </div>
+
+          <div class="row">
+            <mat-form-field class="input-string">
+              <mat-label>Nombre</mat-label>
+              <input matInput formControlName="nombre" type="text" placeholder="Ingrese nombre" >
+              <mat-error *ngIf="checkError('nombre', 'required')">Nombre is required</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="row">
+            <mat-form-field class="input-string">
+            <mat-label>Tipo Producto</mat-label>
+            <mat-select formControlName="idTipoProducto" disableRipple [(ngModel)]="idTipoProductoSelect" > 
+              <mat-option>Seleccionar Tipo Producto</mat-option>
+              <mat-option  *ngFor="let item of tiposProducto" [value]="item.id" >{{item.nombre}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="checkError('idTipoProducto', 'required')">Tipo de producto is required</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="row">
+            <mat-form-field class="input-string">
+            <mat-label>Unidad</mat-label>
+            <mat-select formControlName="idUnidad" disableRipple [(ngModel)]="idUnidadSelect" > 
+              <mat-option>Seleccionar Unidad</mat-option>
+              <mat-option  *ngFor="let item of unidades" [value]="item.id" >{{item.valor}} {{item.nombre}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="checkError('idUnidad', 'required')">Unidad is required</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="row">
+            <mat-form-field class="input-string">
+            <mat-label>Marca</mat-label>
+            <mat-select formControlName="idMarca" disableRipple [(ngModel)]="idMarcaSelect" > 
+              <mat-option>Seleccionar Marca</mat-option>
+              <mat-option  *ngFor="let item of marcas" [value]="item.id" >{{item.nombre}}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="checkError('idMarca', 'required')">Marca is required</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="row">
+            <mat-form-field class="input-string">
+              <mat-label>Precio</mat-label>
+              <input matInput formControlName="precio" min="0" type="number" >
+              <mat-error *ngIf="checkError('precio', 'required')">Precio is required</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">Cancelar</button>
+      <button mat-button [mat-dialog-close]="data" (click)="save()" cdkFocusInitial>Confirmar</button>
+  </div>
+</div>
